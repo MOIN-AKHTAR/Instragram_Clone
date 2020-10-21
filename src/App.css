@@ -1,38 +1,85 @@
-.App {
-  text-align: center;
+html{
+  font-size: 62.5%;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*,*::after,*::before{
+  margin: 0px;
+  padding: 0px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app{
+  background-color: #f8f8f8;
   min-height: 100vh;
+  display: grid;
+  grid-template-areas: "header" "main" "footer";
+  grid-column: 1fr;
+  grid-template-rows: 7rem 1fr 5rem;
+}
+h1{
+  font-size: 3.2rem;
+}
+h2{
+  font-size: 2.4rem;
+}
+h3{
+  font-size: 1.872rem;
+}
+h4{
+  font-size: 1.6rem;
+}
+h5{
+  font-size: 1.328rem;
+}
+h6{
+  font-size: 1.72rem;
+}
+/* HEDAER */
+.app_header{
+  grid-area: header;
+  background-color: white;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.app_headerImage{
+  object-fit: contain;
+  width: 15rem;
+  background-color: white;
+}
+.main_content{
+grid-area: main;
+padding: 10px;
+}
+footer{
+  grid-area: footer;
+  background-color: darkgray;
+}
+
+
+/* POST */
+.post{
+  max-width: 50rem;
+  background-color: #FFF;
+  border: 0.1rem solid lightgray;
+  padding: 1rem 0rem;
+  margin-bottom: 4.5rem;
+}
+.post__header{
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 1rem;
 }
-
-.App-link {
-  color: #61dafb;
+.post__avatar{
+  margin-right: 10px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.post__image{
+  width: 100%;
+  object-fit: contain;
+  display: block;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+.post__text{
+font-weight: normal;
+padding: 1rem;
 }

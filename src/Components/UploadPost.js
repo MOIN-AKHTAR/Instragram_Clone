@@ -1,6 +1,6 @@
 import React,{useState,useRef} from 'react';
 import {  TextField,Button } from '@material-ui/core';
-import {storage,db} from './firebase';
+import {storage,db} from '../firebase';
 import firebase from 'firebase';
 
 export default function UploadPost({userName,email}) {

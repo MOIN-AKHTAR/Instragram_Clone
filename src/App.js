@@ -4,7 +4,7 @@ import {db,auth} from './firebase';
 import './App.css';
 import { Button, makeStyles, Input,Avatar } from '@material-ui/core';
 import Modal from '@material-ui/core/Modal';
-import UploadPost from './UploadPost';
+import UploadPost from './Components/UploadPost';
 
 const useStyles = makeStyles((theme) => ({
   paper: {

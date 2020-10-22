@@ -48,7 +48,7 @@ let unsubscribe=db.collection("posts").doc(id).collection("comments").orderBy("t
             >{userName.substr(0,1)}</Avatar>
             <h4>{userName}</h4>
             </div>
-            {email&&user?.email==email&&<Button onClick={deletePost} color="secondary">Delete</Button>}
+            {user?.email===email&&<Button onClick={deletePost} color="secondary">Delete</Button>}
             </div>
             <img src={imgUrl} alt="Image" 
             aria-hidden

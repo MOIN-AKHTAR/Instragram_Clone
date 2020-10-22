@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import Post from './Components/Post';
 import {db,auth} from './firebase';
 import './App.css';
-import { Button, makeStyles, Input } from '@material-ui/core';
+import { Button, makeStyles, Input,Avatar } from '@material-ui/core';
 import Modal from '@material-ui/core/Modal';
 import UploadPost from './UploadPost';
 
@@ -64,19 +64,26 @@ useEffect(() => {
   return () => {
     unsubscribe();
   }
-}, [user])
+}, [user]);
+
+const resetFields=()=>{
+  setName("");
+  setEmail("");
+  setPassword("");
+  setOpen(false)
+}
 
 
 const onSubmit=(e)=>{
   e.preventDefault();
   if(signInmode){
     auth.signInWithEmailAndPassword(email,password).then((user)=>{
-      setUser(user);
+      resetFields()
       setOpen(false);
     }).catch(err=>alert(err.message))
   }else{
     auth.createUserWithEmailAndPassword(email,password).then((newUser)=>{
-      setOpen(false);
+      resetFields()
       return newUser.user.updateProfile({
         displayName:name
       })
@@ -138,8 +145,11 @@ const body = (
         />
         <div style={{marginBottom:"1rem"}}>
           {
-            user?<Button color="secondary" onClick={logOut}>LogOut</Button>:(
-              <React.Fragment>
+            user?(<div style={{display:"flex"}}>
+            <Button color="secondary" onClick={logOut}>LogOut</Button>
+            <Avatar>{user.displayName.substr(0,1)}</Avatar>
+              </div>):(
+        <React.Fragment>
         <Button onClick={()=>{ setSignInmode(true);setOpen(true);}}  color="primary">Sign In</Button>
         <Button onClick={()=>{ setSignInmode(false);setOpen(true);}}  color="primary">Sign Up</Button>
               </React.Fragment>
@@ -150,6 +160,7 @@ const body = (
       </header>
       
       <main className="main_content" >
+      {user?.displayName&&<UploadPost userName={user.displayName} email={user.email}/>}
       <Modal
         open={open}
         onClose={()=>setOpen(false)}
@@ -162,12 +173,14 @@ const body = (
                  caption={doc.post.caption}
                  imgUrl={doc.post.imageUrl}
                  userName={doc.post.userName}
+                 email={doc.post.email}
+                 id={doc.id}
                  key={doc.id}
+                 user={user}
                  />
                ))
              }
       </main>
-       {user?.displayName&&<UploadPost userName={user.displayName}/>}
     </div>
   );
 }

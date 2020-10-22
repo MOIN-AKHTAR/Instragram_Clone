@@ -19,12 +19,8 @@ html{
   margin: 1rem 0px;
 }
 .app{
-  /* background-color: #f8f8f8;
-  min-height: 100vh;
-  display: grid;
-  grid-template-areas: "header" "main" "footer";
-  grid-column: 1fr;
-  grid-template-rows: 7rem 1fr 5rem; */
+max-width: 900px;
+margin: auto;
 }
 button span{
   font-size: 1.5rem;
@@ -106,12 +102,9 @@ padding: 1rem;
 
 /* Upload Post */
 .upload{
-  width: 400px;
   background-color: lightgray;
   padding: 2rem;
-  position: fixed;
-  bottom: 0px;
-  left:calc(50% - 200px)
+  margin: 2rem 0px;
 } 
 .upload__post{
   display: flex;
@@ -125,4 +118,27 @@ padding: 1rem;
 .upload__post progress{
   width: 100%;
   padding: 1rem 0rem;
+}
+
+/* Comments */
+.comment_section{
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+.comment_section .MuiFormControl-root *,.comment_section *{
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+.comment_section .MuiFormControl-root{
+  flex: 1;
+}
+.user_comment{
+  padding: 1rem 0.5rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+.user_comment>p{
+  flex: 1;
 }

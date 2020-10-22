@@ -3,7 +3,7 @@ import {  TextField,Button } from '@material-ui/core';
 import {storage,db} from './firebase';
 import firebase from 'firebase';
 
-export default function UploadPost({userName}) {
+export default function UploadPost({userName,email}) {
          const imgRef=useRef(null);
          const [caption, setCaption] = useState("");
          const [img, setImg] = useState("");
@@ -35,7 +35,8 @@ export default function UploadPost({userName}) {
                      timestamp:firebase.firestore.FieldValue.serverTimestamp(),
                      caption,
                      imageUrl:url, 
-                     userName
+                     userName,
+                     email
                  }).then(_=>{
                     setProgress(0);
                     setImg(null);

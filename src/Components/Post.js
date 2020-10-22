@@ -9,7 +9,7 @@ export default function Post({userName,imgUrl,caption}) {
             aria-hidden
             className="post__avatar"
             />
-            <h4>Moin Akhter</h4>
+            <h4>{userName}</h4>
             </div>
             <img src={imgUrl} alt="Image" 
             aria-hidden

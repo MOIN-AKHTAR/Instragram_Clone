@@ -5,6 +5,19 @@ html{
   margin: 0px;
   padding: 0px;
 }
+
+/* Sing In */
+.app_signin{
+  display: flex;
+  flex-direction: column;
+}
+.app_signin input{
+  font-size: 1.6rem;
+  margin: 1rem 0px;
+}
+.app_signin>button{
+  margin: 1rem 0px;
+}
 .app{
   background-color: #f8f8f8;
   min-height: 100vh;
@@ -12,6 +25,9 @@ html{
   grid-template-areas: "header" "main" "footer";
   grid-column: 1fr;
   grid-template-rows: 7rem 1fr 5rem;
+}
+button span{
+  font-size: 1.5rem;
 }
 h1{
   font-size: 3.2rem;

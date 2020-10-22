@@ -19,12 +19,12 @@ html{
   margin: 1rem 0px;
 }
 .app{
-  background-color: #f8f8f8;
+  /* background-color: #f8f8f8;
   min-height: 100vh;
   display: grid;
   grid-template-areas: "header" "main" "footer";
   grid-column: 1fr;
-  grid-template-rows: 7rem 1fr 5rem;
+  grid-template-rows: 7rem 1fr 5rem; */
 }
 button span{
   font-size: 1.5rem;
@@ -49,13 +49,16 @@ h6{
 }
 /* HEDAER */
 .app_header{
-  grid-area: header;
+  /* grid-area: header; */
   background-color: white;
   padding: 10px;
   border-bottom: 1px solid lightgray;
   position: sticky;
   top: 0;
   z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .app_headerImage{
   object-fit: contain;
@@ -63,13 +66,13 @@ h6{
   background-color: white;
 }
 .main_content{
-grid-area: main;
+/* grid-area: main; */
 padding: 10px;
 }
-footer{
+/* footer{
   grid-area: footer;
   background-color: darkgray;
-}
+} */
 
 
 /* POST */
@@ -98,4 +101,28 @@ footer{
 .post__text{
 font-weight: normal;
 padding: 1rem;
+}
+
+
+/* Upload Post */
+.upload{
+  width: 400px;
+  background-color: lightgray;
+  padding: 2rem;
+  position: fixed;
+  bottom: 0px;
+  left:calc(50% - 200px)
+} 
+.upload__post{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.upload__post .MuiFormControl-root *,.upload__post *{
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+} 
+.upload__post progress{
+  width: 100%;
+  padding: 1rem 0rem;
 }

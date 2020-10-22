@@ -4,6 +4,7 @@ import {db,auth} from './firebase';
 import './App.css';
 import { Button, makeStyles, Input } from '@material-ui/core';
 import Modal from '@material-ui/core/Modal';
+import UploadPost from './UploadPost';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -43,7 +44,7 @@ const [modalStyle] = useState(getModalStyle);
 useEffect(() => {
   // onSnapShot is a RealTime Listener Who Always Run Whenever Any Data Changes-
   // Here It Will Execute Whenever Posts Are Changes [Inserted,Modified Or Deleted]
-  db.collection("posts").onSnapshot((snapShot)=>{
+  db.collection("posts").orderBy("timestamp","desc").onSnapshot((snapShot)=>{
     setPosts(snapShot.docs.map(doc=>({
       id:doc.id,
       post:doc.data()
@@ -75,12 +76,11 @@ const onSubmit=(e)=>{
     }).catch(err=>alert(err.message))
   }else{
     auth.createUserWithEmailAndPassword(email,password).then((newUser)=>{
-      setUser(user);
       setOpen(false);
       return newUser.user.updateProfile({
         displayName:name
       })
-    }).catch(err=>alert(err.message));
+    }).then(updatedUser=>setUser(updatedUser)).catch(err=>alert(err.message));
   }
 }
 
@@ -136,15 +136,6 @@ const body = (
         alt="Logo" aria-hidden 
         className="app_headerImage"
         />
-      </header>
-      
-      <main className="main_content" >
-      <Modal
-        open={open}
-        onClose={()=>setOpen(false)}
-      >
-       {body}
-      </Modal>
         <div style={{marginBottom:"1rem"}}>
           {
             user?<Button color="secondary" onClick={logOut}>LogOut</Button>:(
@@ -156,6 +147,15 @@ const body = (
           }
         
         </div>
+      </header>
+      
+      <main className="main_content" >
+      <Modal
+        open={open}
+        onClose={()=>setOpen(false)}
+      >
+       {body}
+      </Modal>
              {
                posts.map((doc)=>(
                  <Post
@@ -167,9 +167,7 @@ const body = (
                ))
              }
       </main>
-      <footer>
-
-      </footer>
+       {user?.displayName&&<UploadPost userName={user.displayName}/>}
     </div>
   );
 }
